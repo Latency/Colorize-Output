@@ -110,7 +110,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="colorgcc.cpp" />
     <Content Include="Resources\crayons.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
