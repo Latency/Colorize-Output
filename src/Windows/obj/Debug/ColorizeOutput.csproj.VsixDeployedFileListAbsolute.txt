@@ -1,8 +1,0 @@
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\\ColorizeOutput.dll
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\\ColorizeOutput.pkgdef
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\\extension.vsixmanifest
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\Resources\\crayons.jpg
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\Resources\\License.txt
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\Resources\\ColorizeOutputLogo.png
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\Resources\\preview.png
-C:\Users\Latency\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Blue Onion Software\VSColorOutput\1.4.5\\ColorizeOutput.pdb
