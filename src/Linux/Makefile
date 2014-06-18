@@ -5,7 +5,7 @@
 # Author:       Latency McLaughlin                                             #
 ################################################################################
 
-# ColorGCC version.
+# ColorizeOutput version.
 VERSION = 2.12
 
 # GNU compiler to use.
@@ -15,10 +15,10 @@ CXX     = g++
 BIN_PATH = /usr/bin
 
 # Executable name.
-EXE_FILE = colorgcc
+EXE_FILE = colorizeoutput
 
-# Where to install the configuration file.
-RC_PATH = /etc/sysconfig
+# Where to install the global configuration file.
+RC_PATH = /etc/skel
 
 # Configuration file name.
 RC_FILE = "$(EXE_FILE).rc"
