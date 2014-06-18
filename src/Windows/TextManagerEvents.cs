@@ -27,9 +27,11 @@ namespace ColorizeOutput {
     public void OnUnregisterView(IVsTextView pView) {}
 
     public void OnUserPreferencesChanged(VIEWPREFERENCES[] pViewPrefs, FRAMEPREFERENCES[] pFramePrefs, LANGPREFERENCES[] pLangPrefs, FONTCOLORPREFERENCES[] pColorPrefs) {
-      if (pColorPrefs != null && pColorPrefs.Length > 0 && pColorPrefs[0].pColorTable != null) {
+      if (pColorPrefs != null && pColorPrefs.Length > 0 /*&& pColorPrefs[0].pColorTable != null*/) {
         var guidFontCategory = (Guid) Marshal.PtrToStructure(pColorPrefs[0].pguidFontCategory, typeof (Guid));
-        var guidColorService = (Guid) Marshal.PtrToStructure(pColorPrefs[0].pguidColorService, typeof (Guid));
+        var guidColorService = new Guid();
+        if (pColorPrefs[0].pguidColorService != IntPtr.Zero)
+	      guidColorService = (Guid)Marshal.PtrToStructure(pColorPrefs[0].pguidColorService, typeof(Guid));
         if (_guidColorService == Guid.Empty)
           _guidColorService = guidColorService;
         if (guidFontCategory == DefGuidList.guidTextEditorFontCategory && _guidColorService == guidColorService)
@@ -44,12 +46,14 @@ namespace ColorizeOutput {
     public static void RegisterForTextManagerEvents() {
       var textManager = GetService();
       var container = textManager as IConnectionPointContainer;
-      IConnectionPoint textManagerEventsConnection;
+      IConnectionPoint textManagerEventsConnection = null;
       var eventGuid = typeof (IVsTextManagerEvents).GUID;
-      container.FindConnectionPoint(ref eventGuid, out textManagerEventsConnection);
+      if (container != null)
+        container.FindConnectionPoint(ref eventGuid, out textManagerEventsConnection);
       var textManagerEvents = new TextManagerEvents();
       uint textManagerCookie;
-      textManagerEventsConnection.Advise(textManagerEvents, out textManagerCookie);
+      if (textManagerEventsConnection != null)
+        textManagerEventsConnection.Advise(textManagerEvents, out textManagerCookie);
     }
   }
 }

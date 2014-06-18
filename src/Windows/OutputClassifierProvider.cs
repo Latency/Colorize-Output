@@ -31,7 +31,6 @@ namespace ColorizeOutput {
       try {
         if (OutputClassifier == null) {
           OutputClassifier = new OutputClassifier(ClassificationRegistry, ServiceProvider);
-          TextManagerEvents.RegisterForTextManagerEvents();
         }
       } catch (Exception ex) {
         OutputClassifier.LogError(ex.ToString());

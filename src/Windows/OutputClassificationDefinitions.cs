@@ -8,6 +8,8 @@
 
 using System.ComponentModel.Composition;
 using System.Windows.Media;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
@@ -30,6 +32,12 @@ namespace ColorizeOutput {
 
     public const string FindResultsSearchTerm = "FindResultsSearchTerm";
     public const string FindResultsFilename = "FindResultsFilename";
+
+
+    // "Proxy" versions of the "Find Results" colors.  This is how we 
+    // hack around the fact that VS refuses to use user-specified colors.
+    public const string FindResultsSearchTerm_Proxy = "FindResultsSearchTerm_Proxy";
+    public const string FindResultsFilename_Proxy = "FindResultsFilename_Proxy";
 
     [Export(typeof (ClassificationTypeDefinition))]
     [Name(BuildHead)]
@@ -73,7 +81,15 @@ namespace ColorizeOutput {
 
     [Export]
     [Name(FindResultsFilename)]
-    public static ClassificationTypeDefinition FindFilenameDefinition { get; set; }
+    public static ClassificationTypeDefinition FindResultsFilenameDefinition { get; set; }
+
+    [Export]
+    [Name(FindResultsFilename_Proxy)]
+    public static ClassificationTypeDefinition FindResultsFilename_ProxyDefinition { get; set; }
+
+    [Export]
+    [Name(FindResultsSearchTerm_Proxy)]
+    public static ClassificationTypeDefinition FindResultsSearchTerm_ProxyDefinition { get; set; }
 
     [Name(BuildHead)]
     [UserVisible(true)]
@@ -108,6 +124,23 @@ namespace ColorizeOutput {
       }
     }
 
+    [Name(FindResultsFilename_Proxy)]
+    [UserVisible(false)]
+    [Export(typeof (EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = FindResultsFilename_Proxy)]
+    public sealed class FindResultsFilename_ProxyFormat : ClassificationFormatDefinition {
+      public FindResultsFilename_ProxyFormat() {
+        DisplayName = VsColorOut + "Find Results Filename";
+
+        // Load the default colors from the registry
+        var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\BlueOnionSoftware.VsColorOutputOptions");
+        var fg = key.GetValue(FindResultsFilename + "/foreground", string.Empty).ToString();
+        ForegroundColor = string.IsNullOrWhiteSpace(fg) ? Colors.Gray : (Color?) ColorConverter.ConvertFromString(fg);
+        var bg = key.GetValue(FindResultsFilename + "/background", string.Empty).ToString();
+        BackgroundColor = string.IsNullOrWhiteSpace(bg) ? null : (Color?) ColorConverter.ConvertFromString(bg);
+      }
+    }
+
     [Name(FindResultsSearchTerm)]
     [UserVisible(true)]
     [Export(typeof (EditorFormatDefinition))]
@@ -116,6 +149,23 @@ namespace ColorizeOutput {
       public FindResultsSearchTermFormat() {
         DisplayName = VsColorOut + "Find Results Search Term";
         ForegroundColor = Colors.Blue;
+      }
+    }
+
+    [Name(FindResultsSearchTerm_Proxy)]
+    [UserVisible(false)]
+    [Export(typeof (EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = FindResultsSearchTerm_Proxy)]
+    public sealed class FindResultsSearchTerm_ProxyFormat : ClassificationFormatDefinition {
+      public FindResultsSearchTerm_ProxyFormat() {
+        DisplayName = VsColorOut + "Find Results Search Term";
+
+        // Load the default colors from the registry
+        var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\BlueOnionSoftware.VsColorOutputOptions");
+        var fg = key.GetValue(FindResultsSearchTerm + "/foreground", string.Empty).ToString();
+        ForegroundColor = string.IsNullOrWhiteSpace(fg) ? Colors.Blue : (Color?) ColorConverter.ConvertFromString(fg);
+        var bg = key.GetValue(FindResultsSearchTerm + "/background", string.Empty).ToString();
+        BackgroundColor = string.IsNullOrWhiteSpace(bg) ? null : (Color?) ColorConverter.ConvertFromString(bg);
       }
     }
 

@@ -25,25 +25,25 @@ namespace ColorizeOutput {
     private const string WholeWord = "Whole word";
     private const string ListFilenamesOnly = "List filenames only";
 
-    private static readonly Regex FilenameRegex;
-    private readonly IClassificationTypeRegistryService classificationRegistry;
+    private static readonly Regex _filenameRegex;
+    private readonly IClassificationTypeRegistryService _classificationRegistry;
 
-    private Regex searchTextRegex;
+    private Regex _searchTextRegex;
 
     static FindResultsClassifier() {
-      FilenameRegex = new Regex(@"^\s*.:.*\(\d+\):", RegexOptions.Compiled);
+      _filenameRegex = new Regex(@"^\s*.:.*\(\d+\):", RegexOptions.Compiled);
     }
 
     public FindResultsClassifier(IClassificationTypeRegistryService classificationRegistry) {
-      this.classificationRegistry = classificationRegistry;
+      _classificationRegistry = classificationRegistry;
     }
 
     private IClassificationType SearchTermClassificationType {
-      get { return classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsSearchTerm); }
+      get { return _classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsSearchTerm_Proxy); }
     }
 
     private IClassificationType FilenameClassificationType {
-      get { return classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsFilename); }
+      get { return _classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsFilename_Proxy); }
     }
 
     public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span) {
@@ -55,8 +55,8 @@ namespace ColorizeOutput {
 
       var text = span.GetText();
 
-      var filenameSpans = GetMatches(text, FilenameRegex, span.Start, FilenameClassificationType).ToList();
-      var searchTermSpans = GetMatches(text, searchTextRegex, span.Start, SearchTermClassificationType).ToList();
+      var filenameSpans = GetMatches(text, _filenameRegex, span.Start, FilenameClassificationType).ToList();
+      var searchTermSpans = GetMatches(text, _searchTextRegex, span.Start, SearchTermClassificationType).ToList();
 
       var toRemove = (from searchSpan in searchTermSpans from filenameSpan in filenameSpans where filenameSpan.Span.Contains(searchSpan.Span) select searchSpan).ToList();
 
@@ -68,9 +68,9 @@ namespace ColorizeOutput {
     public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;
 
     private bool CanSearch(SnapshotSpan span) {
-      if (span.Start.Position != 0 && searchTextRegex != null)
+      if (span.Start.Position != 0 && _searchTextRegex != null)
         return true;
-      searchTextRegex = null;
+      _searchTextRegex = null;
       var firstLine = span.Snapshot.GetLineFromLineNumber(0).GetText();
       if (firstLine.StartsWith(FindAll)) {
         var strings = (from s in firstLine.Split(',') select s.Trim()).ToList();
@@ -84,7 +84,7 @@ namespace ColorizeOutput {
         if (!filenamesOnly) {
           var regex = matchWholeWord ? string.Format(@"\b{0}\b", Regex.Escape(searchTerm)) : Regex.Escape(searchTerm);
           var casing = matchCase ? RegexOptions.None : RegexOptions.IgnoreCase;
-          searchTextRegex = new Regex(regex, RegexOptions.None | casing);
+          _searchTextRegex = new Regex(regex, RegexOptions.None | casing);
 
           return true;
         }
