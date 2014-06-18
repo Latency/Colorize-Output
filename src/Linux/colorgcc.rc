@@ -1,0 +1,49 @@
+#
+# Colorgcc configuration file.
+#
+# This file can be located in $HOME/.colorgccrc
+#  to change color attributes.
+#
+# The following groups of attributes may be combined for a given color:
+#
+# 
+#black                   red                     green                   
+#brown                   blue                    magenta                 
+#turquise                grey 
+#
+#on_black                on_red                  on_green                
+#on_brown                on_blue                 on_magenta              
+#on_turquise             on_grey                 
+#
+#charcoal                orange                  lime                    
+#yellow                  fuschia                 pink                    
+#cyan                    white                   
+#
+#on_charcoal             on_orange               on_lime                    
+#on_yellow               on_fuschia              on_pink                    
+#on_cyan                 on_white                   
+#
+#normal                  bold                    dark                    
+#flash                   inverse                 
+#
+
+# Text between ` and ' is usually source code.
+srcColor:					turquise
+
+# Text other than a warning or error.
+introColor:					pink
+
+# Warnings
+warningFileNameColor:		yellow
+warningNumberColor:			green
+warningMessageColor:		charcoal
+warningMessageQuoteColor:	fuschia
+warningMessageStatusColor:	cyan
+
+# Errors
+errorFileNameColor:			brown
+errorFileNameProtoColor:	blue
+errorNumberColor:			green
+errorMessageColor:			orange
+errorMessageQuoteColor: 	red 
+errorMessageStatusColor:	magenta

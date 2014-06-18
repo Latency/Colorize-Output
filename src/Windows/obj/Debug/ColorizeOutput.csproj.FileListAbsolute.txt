@@ -1,0 +1,16 @@
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\obj\Debug\ColorizeOutput.csprojResolveAssemblyReference.cache
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\source.extension.vsixmanifest
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\Resources\crayons.jpg
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\Resources\License.txt
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\Resources\ColorizeOutputLogo.png
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\ColorizeOutput.dll.config
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\ColorizeOutput.dll
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\ColorizeOutput.pdb
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\ColorizeOutput.pkgdef
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\ColorizeOutput.vsix
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\bin\Debug\extension.vsixmanifest
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\obj\Debug\ColorizeOutput.dll
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\obj\Debug\ColorizeOutput.pdb
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\obj\Debug\ColorizeOutput.pkgdef
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\obj\Debug\ColorizeOutput.latest.pkgdef
+C:\Users\Latency\Documents\Visual Studio 2013\Projects\ColorGCC\src\Windows\obj\Debug\extension.vsixmanifest
