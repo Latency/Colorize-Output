@@ -17,29 +17,29 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace Tests {
   public class FakeTextSnapshot : ITextSnapshot {
-    private readonly string text;
-    private readonly string[] lines;
+    private readonly string _text;
+    private readonly string[] _lines;
 
     public FakeTextSnapshot(string text) {
-      this.text = text;
-      lines = text.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
+      _text = text;
+      _lines = text.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
 
-      Lines = lines.Select((t, i) => GetLineFromLineNumber(i)).ToList();
+      Lines = _lines.Select((t, i) => GetLineFromLineNumber(i)).ToList();
 
       TextBuffer = new FakeTextBuffer();
       Version = new FakeVersion(1);
     }
 
     public string GetText(Span span) {
-      return text.Substring(span.Start, span.Length);
+      return _text.Substring(span.Start, span.Length);
     }
 
     public string GetText(int startIndex, int length) {
-      return text.Substring(startIndex, text.Length);
+      return _text.Substring(startIndex, _text.Length);
     }
 
     public string GetText() {
-      return text;
+      return _text;
     }
 
     public char[] ToCharArray(int startIndex, int length) {
@@ -48,18 +48,18 @@ namespace Tests {
 
     public ITextSnapshotLine GetLineFromLineNumber(int lineNumber) {
       var position = GetPositionFromLineNumber(lineNumber);
-      return new FakeTextSnapshotLine(this, lines[lineNumber], position, lineNumber);
+      return new FakeTextSnapshotLine(this, _lines[lineNumber], position, lineNumber);
     }
 
     public ITextSnapshotLine GetLineFromPosition(int position) {
       var lineNumber = GetLineNumberFromPosition(position);
-      return new FakeTextSnapshotLine(this, lines[lineNumber], position, lineNumber);
+      return new FakeTextSnapshotLine(this, _lines[lineNumber], position, lineNumber);
     }
 
     public int GetLineNumberFromPosition(int position) {
       var count = 0;
       for (var i = 0; i < LineCount; i++) {
-        count += lines[i].Length + Environment.NewLine.Length;
+        count += _lines[i].Length + Environment.NewLine.Length;
         if (count > position)
           return i;
       }
@@ -70,20 +70,20 @@ namespace Tests {
     private int GetPositionFromLineNumber(int lineNumber) {
       var position = 0;
       for (var i = 0; i < lineNumber; i++)
-        position += lines[i].Length + Environment.NewLine.Length;
+        position += _lines[i].Length + Environment.NewLine.Length;
       return position;
     }
 
     public int Length {
-      get { return text.Length; }
+      get { return _text.Length; }
     }
 
     public int LineCount {
-      get { return lines.Length; }
+      get { return _lines.Length; }
     }
 
     public char this[int position] {
-      get { return text[position]; }
+      get { return _text[position]; }
     }
 
     public IEnumerable<ITextSnapshotLine> Lines { get; private set; }

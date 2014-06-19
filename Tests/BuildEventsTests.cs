@@ -56,8 +56,7 @@ namespace Tests {
       mockEvents.SetupGet(e => e.DTEEvents).Returns(mockDteEvents.Object);
       mockEvents.SetupGet(e => e.BuildEvents).Returns(() => mockBuildEvents.Object);
 
-      var buildEvents = new ColorizeOutput.BuildEvents(mockServiceProvider.Object);
-      buildEvents.ShowDebugWindowOnDebug = true;
+      new ColorizeOutput.BuildEvents(mockServiceProvider.Object) {ShowDebugWindowOnDebug = true};
       mockDteEvents.Raise(de => de.ModeChanged += null, vsIDEMode.vsIDEModeDesign);
 
       mockDte2.VerifyAll();
@@ -95,8 +94,7 @@ namespace Tests {
       mockEvents.SetupGet(e => e.DTEEvents).Returns(mockDteEvents.Object);
       mockEvents.SetupGet(e => e.BuildEvents).Returns(() => mockBuildEvents.Object);
 
-      var buildEvents = new ColorizeOutput.BuildEvents(mockServiceProvider.Object);
-      buildEvents.ShowElapsedBuildTimeEnabled = true;
+      new ColorizeOutput.BuildEvents(mockServiceProvider.Object) {ShowElapsedBuildTimeEnabled = true};
       mockBuildEvents.Raise(be => be.OnBuildBegin += null, vsBuildScope.vsBuildScopeSolution, vsBuildAction.vsBuildActionBuild);
       mockBuildEvents.Raise(be => be.OnBuildDone += null, vsBuildScope.vsBuildScopeSolution, vsBuildAction.vsBuildActionBuild);
 
@@ -136,8 +134,7 @@ namespace Tests {
       mockEvents.SetupGet(e => e.DTEEvents).Returns(mockDteEvents.Object);
       mockEvents.SetupGet(e => e.BuildEvents).Returns(() => mockBuildEvents.Object);
 
-      var buildEvents = new ColorizeOutput.BuildEvents(mockServiceProvider.Object);
-      buildEvents.ShowBuildReport = true;
+      new ColorizeOutput.BuildEvents(mockServiceProvider.Object) {ShowBuildReport = true};
       mockBuildEvents.Raise(be => be.OnBuildBegin += null, vsBuildScope.vsBuildScopeSolution, vsBuildAction.vsBuildActionBuild);
       mockBuildEvents.Raise(be => be.OnBuildProjConfigDone += null, "test.proj", "Debug", "Any CPU", "", true);
       mockBuildEvents.Raise(be => be.OnBuildProjConfigDone += null, "test2.proj", "Release", "Any CPU", "", false);
@@ -167,8 +164,7 @@ namespace Tests {
       mockEvents.SetupGet(e => e.DTEEvents).Returns(mockDteEvents.Object);
       mockEvents.SetupGet(e => e.BuildEvents).Returns(() => mockBuildEvents.Object);
 
-      var buildEvents = new ColorizeOutput.BuildEvents(mockServiceProvider.Object);
-      buildEvents.StopOnBuildErrorEnabled = true;
+      new ColorizeOutput.BuildEvents(mockServiceProvider.Object) {StopOnBuildErrorEnabled = true};
       mockBuildEvents.Raise(be => be.OnBuildProjConfigDone += null, "", "", "", "", false);
 
       mockDte2.VerifyAll();

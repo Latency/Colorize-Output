@@ -6,19 +6,37 @@
 
 #region
 
+using System;
 using System.ComponentModel.Composition;
+using System.Reflection;
 using System.Windows.Media;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
+using AssemblyInfo;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Linq.Expressions;
 
 #endregion
 
 namespace ColorizeOutput {
-  public static class OutputClassificationDefinitions {
-    private const string VsColorOut = "VSColorOutput ";
+  
 
+
+  public class OutputClassificationDefinitions {
+    // Wrapped extension.
+    private static string Title(Assembly asm) {
+      return asm.ProductTitle();
+    }
+
+    private static readonly string _vsColorOut = Title(Assembly.GetExecutingAssembly()) + ' ';
+
+    // Fetch contents from mapped macro.
     public const string BuildHead = "BuildHead";
     public const string BuildText = "BuildText";
 
@@ -96,7 +114,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = BuildHead)]
     public sealed class BuildHeaderFormat : ClassificationFormatDefinition {
       public BuildHeaderFormat() {
-        DisplayName = VsColorOut + "Build Header";
+        DisplayName = _vsColorOut + "Build Header";
         ForegroundColor = Colors.Green;
       }
     }
@@ -107,7 +125,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = BuildText)]
     public sealed class BuildTextFormat : ClassificationFormatDefinition {
       public BuildTextFormat() {
-        DisplayName = VsColorOut + "Build Text";
+        DisplayName = _vsColorOut + "Build Text";
         ForegroundColor = Colors.Gray;
       }
     }
@@ -118,7 +136,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = FindResultsFilename)]
     public sealed class FindResultsFilenameFormat : ClassificationFormatDefinition {
       public FindResultsFilenameFormat() {
-        DisplayName = VsColorOut + "Find Results Filename";
+        DisplayName = _vsColorOut + "Find Results Filename";
         ForegroundColor = Colors.Gray;
       }
     }
@@ -129,7 +147,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = FindResultsFilenameProxy)]
     public sealed class FindResultsFilenameProxyFormat : ClassificationFormatDefinition {
       public FindResultsFilenameProxyFormat() {
-        DisplayName = VsColorOut + "Find Results Filename";
+        DisplayName = _vsColorOut + "Find Results Filename";
 
         // Load the default colors from the registry
         var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\" + typeof(FindResultsFilenameProxyFormat).Namespace + ".ColorizeOutputOptions");
@@ -148,7 +166,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = FindResultsSearchTerm)]
     public sealed class FindResultsSearchTermFormat : ClassificationFormatDefinition {
       public FindResultsSearchTermFormat() {
-        DisplayName = VsColorOut + "Find Results Search Term";
+        DisplayName = _vsColorOut + "Find Results Search Term";
         ForegroundColor = Colors.Blue;
       }
     }
@@ -159,7 +177,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = FindResultsSearchTermProxy)]
     public sealed class FindResultsSearchTermProxyFormat : ClassificationFormatDefinition {
       public FindResultsSearchTermProxyFormat() {
-        DisplayName = VsColorOut + "Find Results Search Term";
+        DisplayName = _vsColorOut + "Find Results Search Term";
 
         // Load the default colors from the registry
         var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\" + typeof(FindResultsSearchTermProxyFormat).Namespace + ".ColorizeOutputOptions");
@@ -178,7 +196,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogCustom1)]
     public sealed class LogCustom1Format : ClassificationFormatDefinition {
       public LogCustom1Format() {
-        DisplayName = VsColorOut + "Log Custom1";
+        DisplayName = _vsColorOut + "Log Custom1";
         ForegroundColor = Colors.Purple;
       }
     }
@@ -189,7 +207,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogCustom2)]
     public sealed class LogCustom2Format : ClassificationFormatDefinition {
       public LogCustom2Format() {
-        DisplayName = VsColorOut + "Log Custom2";
+        DisplayName = _vsColorOut + "Log Custom2";
         ForegroundColor = Colors.DarkSalmon;
       }
     }
@@ -200,7 +218,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogCustom3)]
     public sealed class LogCustom3Format : ClassificationFormatDefinition {
       public LogCustom3Format() {
-        DisplayName = VsColorOut + "Log Custom3";
+        DisplayName = _vsColorOut + "Log Custom3";
         ForegroundColor = Colors.DarkOrange;
       }
     }
@@ -211,7 +229,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogCustom4)]
     public sealed class LogCustom4Format : ClassificationFormatDefinition {
       public LogCustom4Format() {
-        DisplayName = VsColorOut + "Log Custom4";
+        DisplayName = _vsColorOut + "Log Custom4";
         ForegroundColor = Colors.Brown;
       }
     }
@@ -222,7 +240,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogError)]
     public sealed class LogErrorFormat : ClassificationFormatDefinition {
       public LogErrorFormat() {
-        DisplayName = VsColorOut + "Log Error";
+        DisplayName = _vsColorOut + "Log Error";
         ForegroundColor = Colors.Red;
       }
     }
@@ -233,7 +251,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogInfo)]
     public sealed class LogInformationFormat : ClassificationFormatDefinition {
       public LogInformationFormat() {
-        DisplayName = VsColorOut + "Log Information";
+        DisplayName = _vsColorOut + "Log Information";
         ForegroundColor = Colors.DarkBlue;
       }
     }
@@ -244,7 +262,7 @@ namespace ColorizeOutput {
     [ClassificationType(ClassificationTypeNames = LogWarn)]
     public sealed class LogWarningFormat : ClassificationFormatDefinition {
       public LogWarningFormat() {
-        DisplayName = VsColorOut + "Log Warning";
+        DisplayName = _vsColorOut + "Log Warning";
         ForegroundColor = Colors.Olive;
       }
     }

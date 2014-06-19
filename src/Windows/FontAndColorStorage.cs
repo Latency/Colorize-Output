@@ -11,6 +11,7 @@ using System.Threading;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Win32;
 
 #endregion
 
@@ -69,27 +70,30 @@ namespace ColorizeOutput {
           // for the "Find Results" window.  Since it *does* use the default colors 
           // we provide, we write the colors to an easily accessible location in the
           // registry, and load those as the defaults.
-          var regkey = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true);
-          regkey = regkey.CreateSubKey(@"DialogPage\BlueOnionSoftware.VsColorOutputOptions");
+          using (var root = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true)) {
+            if (root != null) {
+              using (var regkey = root.CreateSubKey(@"DialogPage\" + typeof (FontAndColorStorage).Namespace + ".ColorizeOutputOptions")) {
+                // Open the category with different options; if we get a different color than
+                // we originally got (above), we know the color is set to "Default" or "Auto".
+                store.OpenCategory(DefGuidList.guidTextEditorFontCategory, (uint) (__FCSTORAGEFLAGS.FCSF_READONLY | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES));
+                foreach (var key in new[] {OutputClassificationDefinitions.FindResultsSearchTerm, OutputClassificationDefinitions.FindResultsFilename}) {
+                  ColorableItemInfo[] value = {new ColorableItemInfo()};
+                  var result = store.GetItem(key, value);
 
-          // Open the category with different options; if we get a different color than
-          // we originally got (above), we know the color is set to "Default" or "Auto".
-          store.OpenCategory(DefGuidList.guidTextEditorFontCategory, (uint) (__FCSTORAGEFLAGS.FCSF_READONLY | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES));
-          foreach (var key in new[] {OutputClassificationDefinitions.FindResultsSearchTerm, OutputClassificationDefinitions.FindResultsFilename}) {
-            ColorableItemInfo[] value = {new ColorableItemInfo()};
-            var result = store.GetItem(key, value);
+                  // Save the color information to the registry; if "Default" or "Auto",
+                  // delete the key.
+                  if (value[0].bForegroundValid == 0 || value[0].crForeground != (_colorMap[key])[0].crForeground)
+                    regkey.DeleteValue(key + "/foreground", false);
+                  else
+                    regkey.SetValue(key + "/foreground", COLORREF_string(value[0].crForeground));
 
-            // Save the color information to the registry; if "Default" or "Auto",
-            // delete the key.
-            if (value[0].bForegroundValid == 0 || value[0].crForeground != (_colorMap[key])[0].crForeground)
-              regkey.DeleteValue(key + "/foreground", false);
-            else
-              regkey.SetValue(key + "/foreground", COLORREF_string(value[0].crForeground));
-
-            if (value[0].bBackgroundValid == 0 || value[0].crBackground != (_colorMap[key])[0].crBackground)
-              regkey.DeleteValue(key + "/background", false);
-            else
-              regkey.SetValue(key + "/background", COLORREF_string(value[0].crBackground));
+                  if (value[0].bBackgroundValid == 0 || value[0].crBackground != (_colorMap[key])[0].crBackground)
+                    regkey.DeleteValue(key + "/background", false);
+                  else
+                    regkey.SetValue(key + "/background", COLORREF_string(value[0].crBackground));
+                }
+              }
+            }
           }
         } finally {
           store.CloseCategory();

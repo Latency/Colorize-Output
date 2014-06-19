@@ -29,10 +29,10 @@ namespace Tests {
       var mockClassificationTypeRegistryService = new Mock<IClassificationTypeRegistryService>();
       mockClassificationTypeRegistryService.Setup(c => c.GetClassificationType(It.IsAny<string>())).Returns((string classificationType) => new FakeClassificationType(classificationType));
 
-      classifier = new FindResultsClassifier(mockClassificationTypeRegistryService.Object);
+      _classifier = new FindResultsClassifier(mockClassificationTypeRegistryService.Object);
     }
 
-    private FindResultsClassifier classifier;
+    private FindResultsClassifier _classifier;
 
     private const string ResultsPreamble = "Find all \"";
     private const string ResultsPreambleEnd = "\"";
@@ -77,7 +77,7 @@ namespace Tests {
 
     private void PrimeClassifierSearchOptionsWithFirstLine(string text) {
       var introSnapshotSpan = BuildSnapshotSpanFromLineNumber(text, 0);
-      classifier.GetClassificationSpans(introSnapshotSpan);
+      _classifier.GetClassificationSpans(introSnapshotSpan);
     }
 
     private static string GetCaseInsensitiveResultsText(string searchTerm, params string[] resultLines) {
@@ -140,7 +140,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -160,7 +160,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans.Count.Should().Be(1);
 
@@ -177,7 +177,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -196,7 +196,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -214,7 +214,7 @@ namespace Tests {
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 0);
 
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -233,7 +233,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 2);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -253,7 +253,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -273,7 +273,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
@@ -291,7 +291,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans.Count.Should().Be(0);
     }
@@ -304,7 +304,7 @@ namespace Tests {
       PrimeClassifierSearchOptionsWithFirstLine(text);
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       var searchSpans = spans.Where(IsSearchTerm);
       searchSpans.Count().Should().Be(0);
@@ -316,7 +316,7 @@ namespace Tests {
 
     [Test]
     public void GetClassificationSpansNullSnapShot() {
-      classifier.GetClassificationSpans(new SnapshotSpan()).Should().BeEmpty();
+      _classifier.GetClassificationSpans(new SnapshotSpan()).Should().BeEmpty();
     }
 
     [Test]
@@ -325,7 +325,7 @@ namespace Tests {
       mockSnapshot.SetupGet(s => s.Length).Returns(0);
       var snapshotSpan = new SnapshotSpan(mockSnapshot.Object, 0, 0);
 
-      classifier.GetClassificationSpans(snapshotSpan).Should().BeEmpty();
+      _classifier.GetClassificationSpans(snapshotSpan).Should().BeEmpty();
     }
 
     [Test]
@@ -335,7 +335,7 @@ namespace Tests {
 
       var snapshotSpan = BuildSnapshotSpanFromLineNumber(text, 1);
 
-      var spans = classifier.GetClassificationSpans(snapshotSpan);
+      var spans = _classifier.GetClassificationSpans(snapshotSpan);
 
       spans = spans.Where(IsSearchTerm).ToList();
 
