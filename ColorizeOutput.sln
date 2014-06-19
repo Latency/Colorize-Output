@@ -9,8 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGet.Installer", "Installer\NuGet.Installer.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22} = {BFA8DB9A-F7D4-4405-A97C-2FC515611B22}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorizeOutput", "src\Windows\ColorizeOutput.csproj", "{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInfo", "..\AssemblyInfo\AssemblyInfo\AssemblyInfo.csproj", "{958560DB-A618-486D-8CF3-A6456C4482B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +35,10 @@ Global
 		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{958560DB-A618-486D-8CF3-A6456C4482B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{958560DB-A618-486D-8CF3-A6456C4482B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{958560DB-A618-486D-8CF3-A6456C4482B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{958560DB-A618-486D-8CF3-A6456C4482B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,6 +29,6 @@
   </References>
   <Content>
     <VsPackage>ColorizeOutput.pkgdef</VsPackage>
-    <MefComponent>ColorizeOutput.dll</MefComponent>
+    <MefComponent>ColorizeOutput.exe</MefComponent>
   </Content>
 </Vsix>

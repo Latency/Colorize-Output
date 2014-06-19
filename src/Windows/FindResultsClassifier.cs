@@ -39,11 +39,11 @@ namespace ColorizeOutput {
     }
 
     private IClassificationType SearchTermClassificationType {
-      get { return _classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsSearchTerm_Proxy); }
+      get { return _classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsSearchTermProxy); }
     }
 
     private IClassificationType FilenameClassificationType {
-      get { return _classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsFilename_Proxy); }
+      get { return _classificationRegistry.GetClassificationType(OutputClassificationDefinitions.FindResultsFilenameProxy); }
     }
 
     public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span) {

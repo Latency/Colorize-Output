@@ -168,19 +168,19 @@ const string & ConvertColor(string & str, ushort line)
     // Copy the first word... check its name with idx of color names.
     // ---------------------------------------------------------------------
     word = cpyfwd(str);
-    bool bit = false;
+    bool isSupported = false;
     ushort x = 0;
     while (*ColorCodes[x][0]) {
       if (!strcasecmp(word.c_str(), ColorCodes[x][0])) {
         new_str += ColorCodes[x][1];
-        bit = true;
+        isSupported = true;
         break;
       }
       x++;
     }
-    // Was there a match found, if not then the state bit is 0 and we terminate
+    // Was there a match found, if not then the state isSupported is 0 and we terminate
     // the calling program.
-    if (!bit)
+    if (!isSupported)
       Perror(format("Invalid color type defined at line '%d'.") % line);
     advwrd(str);				// advance our string ptr to the next word.
   }
@@ -220,7 +220,7 @@ void ReadConfigFile(bool dependancy)
   char buf[PATH_MAX];
   string ref, target;
   ushort line = 0, x;
-  bool bit;
+  bool isSupported;
   // Stream until we haven't any more El`captain.
   while (!in.eof() && in.getline(buf, sizeof(buf))) {
     line++;
@@ -244,17 +244,17 @@ void ReadConfigFile(bool dependancy)
     }
     // Find a match to our string off the dictionary table.
     x = 4;						// See DFS[0-3]  "cc, c++, gcc, g++"
-    bit = false;
+    isSupported = false;
     while (*DFS[x]) {
       if (!strcasecmp(target.c_str(), DFS[x])) {
         dfs[DFS[x]] = ConvertColor(ref, line);
-        bit = true;
+        isSupported = true;
         break;
       }
       x++;
     }
-    // Check the state bit to see if a word was actually found.
-    if (!bit)
+    // Check the state isSupported to see if a word was actually found.
+    if (!isSupported)
       Perror(format("Invalid format for '%s' file at line #%d.\nUnrecognizable tag identifier.") % path % line);
   }
   in.close();					// Close the configuration file stream.
@@ -536,6 +536,16 @@ void OpenFD(char **argv, vector < string > &v, const bool dependancy)
 
 
 // -------------------------------------------------------------------------
+// Extension method for finding objects within a vector.
+// -------------------------------------------------------------------------
+template <typename T> 
+const bool Contains( std::vector<T>& Vec, const T& Element ) 
+{
+  return (std::find(Vec.begin(), Vec.end(), Element) != Vec.end());
+}
+
+
+// -------------------------------------------------------------------------
 // Our main function.  Reads in cmd line arguments and processes the output.
 // Currently only supports GNU compilers for c/c++.
 // -------------------------------------------------------------------------
@@ -551,19 +561,17 @@ int main(int argc, char **argv)
   // Make a duplicate copy of our environment.
   // -------------------------------------------------------------------------
   vector < string > v;
-  string tmp;
   ushort x;
-  for (x = 0; x < argc; x++) {
-    tmp = argv[x];
-    v.push_back(tmp);
-  }
+  for (x = 0; x < argc; x++)
+    v.push_back(argv[x]);
 
   // -------------------------------------------------------------------------
   // Find out what compiler argv[0] is currently using.
   // -------------------------------------------------------------------------
-  bool bit = false;
+  bool isSupported = false;
   stringstream strm;
-  string obj = argv[0];
+  string obj = argv[0],
+         tmp;
   size_t y;
   // Determine the link (if any) to the executable.
   char buff[BUFSIZ];
@@ -580,30 +588,14 @@ int main(int argc, char **argv)
     strm << ' ' << DFS[x] << " --> " << tmp << "\n";
     if (!obj.compare(DFS[x])) {
       v[0] = dfs[DFS[x]];		// Copy our new enviornment exec argv[].
-      bit = true;
+      isSupported = true;
       break;
     }
   }
-  // Check state bit to see if a match for our compilers were found.
-  if (!bit) {					// None found, print valid types along with an error message.
+  // Check state isSupported to see if a match for our compilers were found.
+  if (!isSupported) {		   // None found, print valid types along with an error message.
     obj = io::str(format(" %s --> %s was specified.") % obj % tmp);
     Perror(format("Only symbolic links to compilers listed below are currently supported:\n%s\n%s\n") % strm.str() % obj);
-  }
-  // -------------------------------------------------------------------------
-  // Loop through the cmd line argument parameters, and create a string to pass.
-  // -------------------------------------------------------------------------
-  bool version = false, dependancy = false;
-  // Concatante the compiler flags, objs, strings, defs, etc. to our string.
-  x = 0;
-  while (x < v.size()) {
-    if (v[x][0] == '-' && v[x][1] == 'v') {
-      version = true;
-      break;
-    } else if (v[x][0] == '-' && v[x][1] == 'M' && v[x][2] == 'M') {
-      dependancy = true;
-      break;
-    }
-    x++;
   }
 
   // -------------------------------------------------------------------------
@@ -613,13 +605,14 @@ int main(int argc, char **argv)
 
   // -------------------------------------------------------------------------
   // Open the filestream for its output e.g. 1 (stdout) || 2 (stderr)
+  // Check for the '-MM' switch if precompiled header dependancies are to be used.
   // -------------------------------------------------------------------------
-  OpenFD(argv, v, dependancy);
+  OpenFD(argv, v, Contains(v, "-MM"));
 
   // -------------------------------------------------------------------------
   // If '-v' switch was found, concatonate our 'title' string.
   // -------------------------------------------------------------------------
-  if (version)
+  if (Contains(v, "-v"))
     Out << title;
 
   return Retval;

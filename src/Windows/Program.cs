@@ -4,8 +4,14 @@
 // * Date:     06/18/2014
 // ****************************************************************************
 
+using System;
+
 namespace ColorizeOutput {
   internal class Program {
-    private static void Main(string[] args) {}
+    [STAThread]
+    private static void Main(string[] args) {
+      using (var frm = new AboutBox())
+        frm.ShowDialog();
+    }
   }
 }
