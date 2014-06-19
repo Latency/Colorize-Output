@@ -77,7 +77,7 @@
       this.rtbBuild.Cursor = System.Windows.Forms.Cursors.Default;
       this.rtbBuild.Dock = System.Windows.Forms.DockStyle.Fill;
       this.rtbBuild.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.rtbBuild.ForeColor = System.Drawing.SystemColors.WindowText;
+      this.rtbBuild.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
       this.rtbBuild.Location = new System.Drawing.Point(0, 0);
       this.rtbBuild.Name = "rtbBuild";
       this.rtbBuild.ReadOnly = true;
@@ -137,7 +137,7 @@
       this.logoPictureBox.BackColor = System.Drawing.Color.Black;
       this.logoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
       this.logoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.logoPictureBox.Image = global::ColorizeOutput.Properties.Resources.ColorizeOutputLogo;
+      this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
       this.logoPictureBox.Location = new System.Drawing.Point(-7, 0);
       this.logoPictureBox.Margin = new System.Windows.Forms.Padding(0);
       this.logoPictureBox.Name = "logoPictureBox";
