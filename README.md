@@ -1,6 +1,15 @@
 ![ColorizeOutput Logo](http://bio-hazard.cx/colorizeoutput/images/ColorizeOutputLogo.png)
 =====================================================
 
+<ul>
+  <li><a href="#introduction">Introduction</a>
+  <li><a href="#background">Background</a>
+  <li><a href="#using">Using the code</a>
+  <li><a href="#points">Points of Interest</a>
+  <li><a href="#references">References</a> </li>
+  <li><a href="#license">License</a> </li>
+</ul>
+
 A Visual Studio extension to colorize your build and debug output.
 
 ### What is it?
@@ -124,7 +133,4 @@ ColorizeOutput is open source. It's hosted on Codeplex at
 Contributions should be 100% free.  This means, removing banners and
 donate buttons that put money in the repository owners pockets.
 
-\
-
 Copyright © 2014 - All rights reserved
-
