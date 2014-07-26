@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="ed830165-6b60-4706-9feb-feb48ee279d5" Version="1.0" Language="en-US" Publisher="CodePlexProject: Hosting for Open Source Software" />
+    <DisplayName>Colorize Output</DisplayName>
+    <Description xml:space="preserve">Adds color highlighting to Visual Studio's Build and Debug Output Windows.</Description>
+    <MoreInfo>https://colorizeoutput.codeplex.com/</MoreInfo>
+    <License>https://colorizeoutput.codeplex.com/license</License>
+    <GettingStartedGuide>https://colorizeoutput.codeplex.com/documentation</GettingStartedGuide>
+    <Icon>Resources\Package.ico</Icon>
+    <PreviewImage>preview.png</PreviewImage>
+    <Tags>compiler output color window debug</Tags>
+  </Metadata>
+  <Installation InstalledByMsi="false">
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[14.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency d:Source="Project" Version="[4.0]" d:ProjectName="ColorizeOutput" d:InstallSource="Embed" d:VsixSubPath="Embeded" Location="|ColorizeOutput;VSIXContainerProjectOutputGroup|" DisplayName="|ColorizeOutput;VSIXNameProjectOutputGroup|" Id="|ColorizeOutput;VSIXIdentifierProjectOutputGroup|" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" d:Source="Installed" Version="[14.0]" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+  </Assets>
+</PackageManifest>
