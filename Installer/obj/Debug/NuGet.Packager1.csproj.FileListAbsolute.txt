@@ -1,5 +1,0 @@
-c:\users\latency\documents\visual studio 2013\Projects\ColorGCC\NuGet.Packager1\NuGet.Packager1\bin\Debug\NuGet.Packager1.dll
-c:\users\latency\documents\visual studio 2013\Projects\ColorGCC\NuGet.Packager1\NuGet.Packager1\bin\Debug\NuGet.Packager1.pdb
-c:\users\latency\documents\visual studio 2013\Projects\ColorGCC\NuGet.Packager1\NuGet.Packager1\obj\Debug\NuGet.Packager1.csprojResolveAssemblyReference.cache
-c:\users\latency\documents\visual studio 2013\Projects\ColorGCC\NuGet.Packager1\NuGet.Packager1\obj\Debug\NuGet.Packager1.dll
-c:\users\latency\documents\visual studio 2013\Projects\ColorGCC\NuGet.Packager1\NuGet.Packager1\obj\Debug\NuGet.Packager1.pdb
