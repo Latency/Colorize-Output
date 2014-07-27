@@ -6,7 +6,6 @@
 
 #region
 
-using System;
 using System.ComponentModel.Composition;
 using System.Reflection;
 using System.Windows.Media;
@@ -15,12 +14,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 using AssemblyInfo;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Linq.Expressions;
 
 #endregion
 

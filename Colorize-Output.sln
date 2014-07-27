@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.21730.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4906F798-1AA4-49F8-9E56-38C5B5B7200D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -10,9 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInfo", "..\AssemblyInfo\AssemblyInfo\AssemblyInfo.csproj", "{958560DB-A618-486D-8CF3-A6456C4482B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorizeOutput", "src\Windows\ColorizeOutput.csproj", "{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage1", "VSPackage1\VSPackage1.csproj", "{239C63C8-073D-449C-92B0-1142C3494FF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colorize-Output", "src\Windows\Colorize-Output.csproj", "{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80BAF24F-8152-48D7-B8DA-55AE625E0D2F}"
 	ProjectSection(SolutionItems) = preProject
@@ -38,10 +36,6 @@ Global
 		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{239C63C8-073D-449C-92B0-1142C3494FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{239C63C8-073D-449C-92B0-1142C3494FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{239C63C8-073D-449C-92B0-1142C3494FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{239C63C8-073D-449C-92B0-1142C3494FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
