@@ -3,16 +3,19 @@
 
 <ul>
   <li><a href="#introduction">Introduction</a>
-  <li><a href="#background">Background</a>
-  <li><a href="#using">Using the code</a>
-  <li><a href="#points">Points of Interest</a>
+  <li><a href="#history">History</a>
+  <li><a href="#installation">Installation</a>
+  <li><a href="#howitworks">How It Works</a>  
+  <li><a href="#usage">Usage</a>
+  <li><a href="#patterns">Creating Patterns</a>
+  <li><a href="#features">Other Features</a>
   <li><a href="#references">References</a> </li>
   <li><a href="#license">License</a> </li>
 </ul>
 
-A Visual Studio extension to colorize your build and debug output.
+<p>A Visual Studio extension to colorize your build and debug output.</p>
 
-### What is it?
+<a name="introduction"><h2>Introduction</h2></a>
 
 ColorizeOutput can change the color of a line emitted to the output
 window based on specified rules. The rules consist of regular
@@ -23,7 +26,7 @@ yellow/gold and successful build messages in green.
 
 ![screen shot of VSColorOutput build output](http://bio-hazard.cx/colorizeoutput/images/vscoloroutput.png)
 
-### History
+<a name="history"><h2>History</h2></a>
 
 ColorG(CC/++) was originally conceived from PERL \`99 project and
 developed for POSIX platforms written by Latency McLaughlin in 1999-2000
@@ -35,7 +38,7 @@ environment.
 For Windows, it is now contained within the IDE itself and can be
 configured using the menu option preferences.
 
-### Installation
+<a name="installation"><h2>Installation</h2></a>
 
 Download and open the
 [ColorizeOutput.visx](http://visualstudiogallery.msdn.microsoft.com/f4d9c2b5-d6d7-4543-a7a5-2d7ebabc2496)
@@ -43,7 +46,7 @@ file.  To uninstall, go the *Tools|Extensions* page, find ColorizeOutput
 in the "Installed Extensions" and click uninstall.  Registry entries are
 not removed, so later installations will reuse these same settings.
 
-### How does it work?
+<a name="howitworks"><h2>How It Works</h2></a>
 
 ColorizeOutput hooks into the the classifier chain of Visual Studio.
 This allows ColorizeOutput to monitor every line sent to the output
@@ -55,7 +58,7 @@ classification.  If no patterns match, then line is classified as
 From here, Visual Studio does the heavy lifting of mapping the
 classification to a color.  Colors are stored in the registry.
 
-### Usage
+<a name="usage"><h2>Usage</h2></a>
 
 Colors are set in the *Tools|Options|Fonts and Colors|Text Editor*
 dialog. ColorizeOutput colors start with "VSColor" so they group
@@ -86,7 +89,7 @@ actual use.
 match the other patterns. Its default color is "Gray". I've found this
 helps to highlight the other classified lines.
 
-### Creating Patterns
+<a name="patterns"><h2>Creating Patterns</h2></a>
 
 The *Tools|Options|ColorizeOutput* dialog contains settings. You can
 add, delete or edit the patterns. Patterns are regular expressions. The
@@ -106,7 +109,7 @@ given the classification associated with the pattern. No additional
 patterns are tested for the given line. Therefore, the order of the
 classifiers is significant.
 
-### Other Features
+<a name="features"><h2>Other Features</h2></a>
 
 **Stop Build On First Error**
 
@@ -125,7 +128,7 @@ window, this won't have much affect. If you run it in a tabbed window
 then this setting will activate the debug window saving you a few mouse
 clicks.
 
-### Open Source
+<a name="references"><h2>References</h2></a>
 
 ColorizeOutput is open source. It's hosted on Codeplex at
 <http://colorizeoutput.codeplex.com> or <http://latency.github.io/ColorizeOutput>
@@ -133,4 +136,11 @@ ColorizeOutput is open source. It's hosted on Codeplex at
 Contributions should be 100% free.  This means, removing banners and
 donate buttons that put money in the repository owners pockets.
 
-Copyright © 2014 - All rights reserved
+<a name="license"><h2>License</h2></a>
+<div id="LicenseTerms">
+  <p>
+    <a href="http://www.gnu.org/copyleft/gpl.html">GNU LESSER GENERAL PUBLIC LICENSE</a>
+    Version 3, 29 June 2007
+  </p>
+</div>
+<hr>
