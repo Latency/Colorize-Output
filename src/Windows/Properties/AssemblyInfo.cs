@@ -1,7 +1,7 @@
 // ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     AssemblyInfo.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -11,12 +11,12 @@ using System.Runtime.InteropServices;
 
 #endregion
 
-[assembly: AssemblyTitle("ColorizeOutput")]
-[assembly: AssemblyDescription("Colorized debug and build window output messages")]
+[assembly: AssemblyTitle("Colorize Output")]
+[assembly: AssemblyDescription("Colorized output for Visual Studio.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("https://colorizeoutput.codeplex.com/")]
-[assembly: AssemblyProduct("ColorizedOutput for Visual Studio")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("Open Source Community")]
+[assembly: AssemblyProduct("Colorize Output")]
+[assembly: AssemblyCopyright("https://colorizeoutput.codeplex.com/")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

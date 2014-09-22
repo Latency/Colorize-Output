@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     TextManagerEvents.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -31,7 +31,7 @@ namespace ColorizeOutput {
         var guidFontCategory = (Guid) Marshal.PtrToStructure(pColorPrefs[0].pguidFontCategory, typeof (Guid));
         var guidColorService = new Guid();
         if (pColorPrefs[0].pguidColorService != IntPtr.Zero)
-	      guidColorService = (Guid)Marshal.PtrToStructure(pColorPrefs[0].pguidColorService, typeof(Guid));
+          guidColorService = (Guid) Marshal.PtrToStructure(pColorPrefs[0].pguidColorService, typeof (Guid));
         if (_guidColorService == Guid.Empty)
           _guidColorService = guidColorService;
         if (guidFontCategory == DefGuidList.guidTextEditorFontCategory && _guidColorService == guidColorService)

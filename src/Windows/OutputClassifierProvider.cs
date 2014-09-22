@@ -1,7 +1,7 @@
 // ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     OutputClassifierProvider.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -21,17 +21,18 @@ namespace ColorizeOutput {
   [ContentType("output")]
   [Export(typeof (IClassifierProvider))]
   public class OutputClassifierProvider : IClassifierProvider {
-    [Import] internal IClassificationTypeRegistryService ClassificationRegistry;
+    [Import]
+    internal IClassificationTypeRegistryService ClassificationRegistry;
 
-    [Import] internal SVsServiceProvider ServiceProvider;
+    [Import]
+    internal SVsServiceProvider ServiceProvider;
 
     public static OutputClassifier OutputClassifier { get; private set; }
 
     public IClassifier GetClassifier(ITextBuffer buffer) {
       try {
-        if (OutputClassifier == null) {
+        if (OutputClassifier == null)
           OutputClassifier = new OutputClassifier(ClassificationRegistry, ServiceProvider);
-        }
       } catch (Exception ex) {
         OutputClassifier.LogError(ex.ToString());
         throw;

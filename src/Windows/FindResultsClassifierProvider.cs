@@ -1,7 +1,7 @@
 // ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     FindResultsClassifierProvider.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -20,7 +20,8 @@ namespace ColorizeOutput {
   [ContentType("FindResults")]
   [Export(typeof (IClassifierProvider))]
   public class FindResultsClassifierProvider : IClassifierProvider {
-    [Import] internal IClassificationTypeRegistryService ClassificationRegistry;
+    [Import]
+    internal IClassificationTypeRegistryService ClassificationRegistry;
 
     public static IClassifier FindResultsClassifier { get; private set; }
 

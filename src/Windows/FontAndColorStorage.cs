@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     FontAndColorStorage.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -11,7 +11,6 @@ using System.Threading;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 
 #endregion
 
@@ -22,17 +21,51 @@ namespace ColorizeOutput {
 
 
     private static readonly Dictionary<string, ColorableItemInfo[]> _colorMap = new Dictionary<string, ColorableItemInfo[]> {
-      {OutputClassificationDefinitions.BuildHead, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.BuildText, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogInfo, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogWarn, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogError, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogCustom1, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogCustom2, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogCustom3, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.LogCustom4, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.FindResultsFilename, new[] {new ColorableItemInfo()}},
-      {OutputClassificationDefinitions.FindResultsSearchTerm, new[] {new ColorableItemInfo()}}
+      {
+        OutputClassificationDefinitions.BuildHead, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.BuildText, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogInfo, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogWarn, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogError, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogCustom1, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogCustom2, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogCustom3, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.LogCustom4, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.FindResultsFilename, new[] {
+          new ColorableItemInfo()
+        }
+      }, {
+        OutputClassificationDefinitions.FindResultsSearchTerm, new[] {
+          new ColorableItemInfo()
+        }
+      }
     };
 
     private static int _updateState;
@@ -76,8 +109,12 @@ namespace ColorizeOutput {
                 // Open the category with different options; if we get a different color than
                 // we originally got (above), we know the color is set to "Default" or "Auto".
                 store.OpenCategory(DefGuidList.guidTextEditorFontCategory, (uint) (__FCSTORAGEFLAGS.FCSF_READONLY | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES));
-                foreach (var key in new[] {OutputClassificationDefinitions.FindResultsSearchTerm, OutputClassificationDefinitions.FindResultsFilename}) {
-                  ColorableItemInfo[] value = {new ColorableItemInfo()};
+                foreach (var key in new[] {
+                  OutputClassificationDefinitions.FindResultsSearchTerm, OutputClassificationDefinitions.FindResultsFilename
+                }) {
+                  ColorableItemInfo[] value = {
+                    new ColorableItemInfo()
+                  };
                   var result = store.GetItem(key, value);
 
                   // Save the color information to the registry; if "Default" or "Auto",

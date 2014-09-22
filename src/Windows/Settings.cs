@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     Settings.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -23,7 +23,7 @@ namespace ColorizeOutput {
     public const string ShowElapsedBuildTimeKey = "ShowElapsedBuildTime";
     public const string ShowBuildReportKey = "ShowBuildReport";
     public const string ShowDebugWindowOnDebugKey = "ShowDebugWindowOnDebug";
-    public const string RegistryPath = @"DialogPage\BlueOnionSoftware.ColorizeOutputOptions";
+    public const string RegistryPath = @"DialogPage\ColorizeOutputOptions";
     public static IRegistryKey OverrideRegistryKey { get; set; }
 
     public RegExClassification[] Patterns { get; set; }
@@ -78,14 +78,46 @@ namespace ColorizeOutput {
 
     private static RegExClassification[] DefaultPatterns() {
       return new[] {
-        new RegExClassification {RegExPattern = @"\+\+\+\>", ClassificationType = ClassificationTypes.LogCustom1, IgnoreCase = false},
-        new RegExClassification {RegExPattern = @"(=====|-----|Projects build report|Status    \| Project \[Config\|platform\])", ClassificationType = ClassificationTypes.BuildHead, IgnoreCase = false},
-        new RegExClassification {RegExPattern = @"0 failed|Succeeded", ClassificationType = ClassificationTypes.BuildHead, IgnoreCase = true},
-        new RegExClassification {RegExPattern = @"(\W|^)(error|fail|failed|exception)\W", ClassificationType = ClassificationTypes.LogError, IgnoreCase = true},
-        new RegExClassification {RegExPattern = @"(exception:|stack trace:)", ClassificationType = ClassificationTypes.LogError, IgnoreCase = true},
-        new RegExClassification {RegExPattern = @"^\s+at\s", ClassificationType = ClassificationTypes.LogError, IgnoreCase = true},
-        new RegExClassification {RegExPattern = @"(\W|^)warning\W", ClassificationType = ClassificationTypes.LogWarning, IgnoreCase = true},
-        new RegExClassification {RegExPattern = @"(\W|^)information\W", ClassificationType = ClassificationTypes.LogInformation, IgnoreCase = true}
+        new RegExClassification {
+          RegExPattern = @"\+\+\+\>",
+          ClassificationType = ClassificationTypes.LogCustom1,
+          IgnoreCase = false
+        },
+        new RegExClassification {
+          RegExPattern = @"(=====|-----|Projects build report|Status    \| Project \[Config\|platform\])",
+          ClassificationType = ClassificationTypes.BuildHead,
+          IgnoreCase = false
+        },
+        new RegExClassification {
+          RegExPattern = @"0 failed|Succeeded",
+          ClassificationType = ClassificationTypes.BuildHead,
+          IgnoreCase = true
+        },
+        new RegExClassification {
+          RegExPattern = @"(\W|^)(error|fail|failed|exception)\W",
+          ClassificationType = ClassificationTypes.LogError,
+          IgnoreCase = true
+        },
+        new RegExClassification {
+          RegExPattern = @"(exception:|stack trace:)",
+          ClassificationType = ClassificationTypes.LogError,
+          IgnoreCase = true
+        },
+        new RegExClassification {
+          RegExPattern = @"^\s+at\s",
+          ClassificationType = ClassificationTypes.LogError,
+          IgnoreCase = true
+        },
+        new RegExClassification {
+          RegExPattern = @"(\W|^)warning\W",
+          ClassificationType = ClassificationTypes.LogWarning,
+          IgnoreCase = true
+        },
+        new RegExClassification {
+          RegExPattern = @"(\W|^)information\W",
+          ClassificationType = ClassificationTypes.LogInformation,
+          IgnoreCase = true
+        }
       };
     }
 

@@ -1,8 +1,11 @@
 // ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     OutputClassifier.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
+
+using System.Reflection;
+using AssemblyInfo;
 
 #region
 
@@ -69,10 +72,14 @@ namespace ColorizeOutput {
         var settings = new Settings();
         settings.Load();
         var patterns = settings.Patterns ?? new RegExClassification[0];
-        var classifiers =
-          (from pattern in patterns let test = new Regex(pattern.RegExPattern, pattern.IgnoreCase ? RegexOptions.IgnoreCase : RegexOptions.None)
-           select new Classifier {Type = pattern.ClassificationType.ToString(), Test = text => test.IsMatch(text)}).ToList();
-        classifiers.Add(new Classifier {Type = OutputClassificationDefinitions.BuildText, Test = t => true});
+        var classifiers = (from pattern in patterns let test = new Regex(pattern.RegExPattern, pattern.IgnoreCase ? RegexOptions.IgnoreCase : RegexOptions.None) select new Classifier {
+          Type = pattern.ClassificationType.ToString(),
+          Test = text => test.IsMatch(text)
+        }).ToList();
+        classifiers.Add(new Classifier {
+          Type = OutputClassificationDefinitions.BuildText,
+          Test = t => true
+        });
         _classifiers = classifiers;
         _buildEvents.StopOnBuildErrorEnabled = settings.EnableStopOnBuildError;
         _buildEvents.ShowElapsedBuildTimeEnabled = settings.ShowElapsedBuildTime;
@@ -90,7 +97,7 @@ namespace ColorizeOutput {
       try {
         // I'm co-opting the Visual Studio event source because I can't register
         // my own from a .VSIX installer.
-        EventLog.WriteEntry("Microsoft Visual Studio", "VSColorOutput: " + (message ?? "null"), EventLogEntryType.Error);
+        EventLog.WriteEntry("Microsoft Visual Studio", Assembly.GetExecutingAssembly().Product() + ": " + (message ?? "null"), EventLogEntryType.Error);
       } catch {
         // Don't kill extension on logging errors
       }

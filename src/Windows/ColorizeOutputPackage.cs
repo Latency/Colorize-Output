@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     ColorizeOutputPackage.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -18,7 +18,7 @@ namespace ColorizeOutput {
   [ProvideOptionPage(typeof (ColorizeOutputOptions), ColorizeOutputOptions.Category, ColorizeOutputOptions.SubCategory, 1000, 1001, true)]
   [ProvideProfile(typeof (ColorizeOutputOptions), ColorizeOutputOptions.Category, ColorizeOutputOptions.SubCategory, 1000, 1001, true)]
   [ProvideAutoLoad("adfc4e64-0397-11d1-9f4e-00a0c911004f")] //UICONTEXT_NoSolution; always loads 
-  [InstalledProductRegistration("ColorizeOutput", "Colorized debug and build window output messages - http://latency.github.io/Colorize-Output/", "1.4.5")]
+  [InstalledProductRegistration("Colorize Output", "Colorized output for Visual Studio IDE and GNU compilers - http://latency.github.io/Colorize-Output/", "1.4.5")]
   public class ColorizeOutputPackage : Package {
     protected override void Initialize() {
       TextManagerEvents.RegisterForTextManagerEvents();

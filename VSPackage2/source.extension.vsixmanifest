@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="cb7c12b1-a065-4224-9c78-eda8c113b5a2" Version="1.0" Language="en-US" Publisher="Open Source Community" />
+    <DisplayName>Colorize Output</DisplayName>
+    <Description>Colorized output for Visual Studio.</Description>
+    <MoreInfo>https://colorizeoutput.codeplex.com/</MoreInfo>
+    <License>LICENSE.txt</License>
+    <Icon>Resources\Package.ico</Icon>
+    <PreviewImage>Resources\Images.png</PreviewImage>
+    <Tags>VSIX;Color Output;Colorize Output;ColorizeOutput;Visual Studio;ColorGCC;ColorG++;ColorG(CC/++);</Tags>
+  </Metadata>
+  <Installation InstalledByMsi="true">
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.12.0" DisplayName="Visual Studio MPF 12.0" d:Source="Installed" Version="[12.0]" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+  </Assets>
+</PackageManifest>

@@ -1,7 +1,7 @@
 // ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     OutputClassificationDefinitions.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -9,25 +9,17 @@
 using System.ComponentModel.Composition;
 using System.Reflection;
 using System.Windows.Media;
+using AssemblyInfo;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
-using AssemblyInfo;
 
 #endregion
 
 namespace ColorizeOutput {
-  
-
-
   public class OutputClassificationDefinitions {
     // Wrapped extension.
-    private static string Title(Assembly asm) {
-      return asm.ProductTitle();
-    }
-
-    private static readonly string _vsColorOut = Title(Assembly.GetExecutingAssembly()) + ' ';
 
     // Fetch contents from mapped macro.
     public const string BuildHead = "BuildHead";
@@ -48,6 +40,7 @@ namespace ColorizeOutput {
     // "Proxy" versions of the "Find Results" colors.  This is how we hack around the fact that VS refuses to use user-specified colors.
     public const string FindResultsSearchTermProxy = "FindResultsSearchTermProxy";
     public const string FindResultsFilenameProxy = "FindResultsFilenameProxy";
+    private static readonly string _vsColorOut = Assembly.GetExecutingAssembly().ProductTitle() + ' ';
 
     [Export(typeof (ClassificationTypeDefinition))]
     [Name(BuildHead)]
@@ -143,13 +136,13 @@ namespace ColorizeOutput {
         DisplayName = _vsColorOut + "Find Results Filename";
 
         // Load the default colors from the registry
-        var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\" + typeof(FindResultsFilenameProxyFormat).Namespace + ".ColorizeOutputOptions");
-        if (key != null) {
-          var fg = key.GetValue(FindResultsFilename + "/foreground", string.Empty).ToString();
-          ForegroundColor = string.IsNullOrWhiteSpace(fg) ? Colors.Gray : (Color?) ColorConverter.ConvertFromString(fg);
-          var bg = key.GetValue(FindResultsFilename + "/background", string.Empty).ToString();
-          BackgroundColor = string.IsNullOrWhiteSpace(bg) ? null : (Color?) ColorConverter.ConvertFromString(bg);
-        }
+        var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\" + typeof (FindResultsFilenameProxyFormat).Namespace + ".ColorizeOutputOptions");
+        if (key == null)
+          return;
+        var fg = key.GetValue(FindResultsFilename + "/foreground", string.Empty).ToString();
+        ForegroundColor = string.IsNullOrWhiteSpace(fg) ? Colors.Gray : (Color?) ColorConverter.ConvertFromString(fg);
+        var bg = key.GetValue(FindResultsFilename + "/background", string.Empty).ToString();
+        BackgroundColor = string.IsNullOrWhiteSpace(bg) ? null : (Color?) ColorConverter.ConvertFromString(bg);
       }
     }
 
@@ -173,13 +166,13 @@ namespace ColorizeOutput {
         DisplayName = _vsColorOut + "Find Results Search Term";
 
         // Load the default colors from the registry
-        var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\" + typeof(FindResultsSearchTermProxyFormat).Namespace + ".ColorizeOutputOptions");
-        if (key != null) {
-          var fg = key.GetValue(FindResultsSearchTerm + "/foreground", string.Empty).ToString();
-          ForegroundColor = string.IsNullOrWhiteSpace(fg) ? Colors.Blue : (Color?) ColorConverter.ConvertFromString(fg);
-          var bg = key.GetValue(FindResultsSearchTerm + "/background", string.Empty).ToString();
-          BackgroundColor = string.IsNullOrWhiteSpace(bg) ? null : (Color?) ColorConverter.ConvertFromString(bg);
-        }
+        var key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true).CreateSubKey(@"DialogPage\" + typeof (FindResultsSearchTermProxyFormat).Namespace + ".ColorizeOutputOptions");
+        if (key == null)
+          return;
+        var fg = key.GetValue(FindResultsSearchTerm + "/foreground", string.Empty).ToString();
+        ForegroundColor = string.IsNullOrWhiteSpace(fg) ? Colors.Blue : (Color?) ColorConverter.ConvertFromString(fg);
+        var bg = key.GetValue(FindResultsSearchTerm + "/background", string.Empty).ToString();
+        BackgroundColor = string.IsNullOrWhiteSpace(bg) ? null : (Color?) ColorConverter.ConvertFromString(bg);
       }
     }
 

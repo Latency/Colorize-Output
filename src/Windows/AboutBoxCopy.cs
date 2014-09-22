@@ -1,15 +1,22 @@
-﻿using System;
+﻿// ****************************************************************************
+// * Project:  Colorize-Output
+// * File:     AboutBoxCopy.cs
+// * Date:     07/26/2014
+// ****************************************************************************
+
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ColorizeOutput {
   sealed partial class AboutBoxCopy : Form {
-    public AboutBoxCopy(string title, string text, string vsVersion, string copyright, IReadOnlyCollection<KeyValuePair<string, string>> plugins ) {
+    public AboutBoxCopy(string title, string text, string vsVersion, string copyright, IReadOnlyCollection<KeyValuePair<string, string>> plugins) {
       InitializeComponent();
 
       Text = title;
       rtbCopy.Text = text + Environment.NewLine;
-      
+
       Clipboard.SetText(rtbCopy.Text);
 
       if (!String.IsNullOrEmpty(vsVersion)) {
@@ -28,7 +35,7 @@ namespace ColorizeOutput {
     }
 
     private void rtbCopy_LinkClicked(object sender, LinkClickedEventArgs e) {
-      System.Diagnostics.Process.Start(e.LinkText);
+      Process.Start(e.LinkText);
     }
   }
 }

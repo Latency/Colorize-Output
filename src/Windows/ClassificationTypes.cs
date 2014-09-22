@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     ClassificationTypes.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 namespace ColorizeOutput {

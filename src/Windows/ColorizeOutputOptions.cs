@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     ColorizeOutputOptions.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 #region
@@ -17,7 +17,7 @@ namespace ColorizeOutput {
   public class ColorizeOutputOptions : DialogPage {
     private const string ActionSubCategory = "Actions";
     private const string PatternsSubCategory = "Patterns";
-    public const string Category = "ColorizeOutput";
+    public const string Category = "Colorize Output";
     public const string SubCategory = "General";
 
     [Category(PatternsSubCategory)]

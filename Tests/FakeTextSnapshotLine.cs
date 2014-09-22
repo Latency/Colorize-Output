@@ -13,21 +13,21 @@ using Microsoft.VisualStudio.Text;
 
 namespace Tests {
   public class FakeTextSnapshotLine : ITextSnapshotLine {
-    private readonly string text;
+    private readonly string _text;
 
     public FakeTextSnapshotLine(ITextSnapshot snapshot, string text, int position, int lineNumber) {
       Snapshot = snapshot;
-      this.text = text;
+      _text = text;
       LineNumber = lineNumber;
       Start = new SnapshotPoint(snapshot, position);
     }
 
     public string GetText() {
-      return text;
+      return _text;
     }
 
     public string GetTextIncludingLineBreak() {
-      return text + Environment.NewLine;
+      return _text + Environment.NewLine;
     }
 
     public string GetLineBreakText() {
@@ -49,11 +49,11 @@ namespace Tests {
     public SnapshotPoint Start { get; private set; }
 
     public int Length {
-      get { return text.Length; }
+      get { return _text.Length; }
     }
 
     public int LengthIncludingLineBreak {
-      get { return text.Length + LineBreakLength; }
+      get { return _text.Length + LineBreakLength; }
     }
 
     public SnapshotPoint End {

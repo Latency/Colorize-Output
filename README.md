@@ -1,4 +1,4 @@
-![ColorizeOutput Logo](http://bio-hazard.cx/colorizeoutput/images/ColorizeOutputLogo.png)
+![ColorizeOutput Logo](http://bio-hazard.us/colorizeoutput/images/ColorizeOutputLogo.png)
 =====================================================
 
 <ul>
@@ -24,7 +24,7 @@ expressions. Rules map to classifications which in turn map to colors.
 The default patterns will color build errors in red, warnings in
 yellow/gold and successful build messages in green.
 
-![screen shot of VSColorOutput build output](http://bio-hazard.cx/colorizeoutput/images/vscoloroutput.png)
+![screen shot of VSColorOutput build output](http://bio-hazard.us/colorizeoutput/images/vscoloroutput.png)
 
 <a name="history"><h2>History</h2></a>
 
@@ -41,7 +41,7 @@ configured using the menu option preferences.
 <a name="installation"><h2>Installation</h2></a>
 
 Download and open the
-[ColorizeOutput.visx](http://visualstudiogallery.msdn.microsoft.com/f4d9c2b5-d6d7-4543-a7a5-2d7ebabc2496)
+[ColorizeOutput.vsix](http://visualstudiogallery.msdn.microsoft.com/f4d9c2b5-d6d7-4543-a7a5-2d7ebabc2496)
 file.  To uninstall, go the *Tools|Extensions* page, find ColorizeOutput
 in the "Installed Extensions" and click uninstall.  Registry entries are
 not removed, so later installations will reuse these same settings.
@@ -68,7 +68,7 @@ but, interestingly, Visual Studio does not support adding colors to this
 category.
 
 ![screen shot of VSColorOutput colors
-dialog](http://bio-hazard.cx/colorizeoutput/images/vscoloroutputcolors.png)
+dialog](http://bio-hazard.us/colorizeoutput/images/vscoloroutputcolors.png)
 
 There are nine VSColors classifications. They are:
 
@@ -98,10 +98,10 @@ regular expressions use the .NET form
 slightly from those used by Ruby, JavaScript, Python, etc.
 
 ![screen shot of VSColorOutput options
-dialog](http://bio-hazard.cx/colorizeoutput/images/vscoloroutputoptions.png)
+dialog](http://bio-hazard.us/colorizeoutput/images/vscoloroutputoptions.png)
 
 ![screen shot of VSColorOutput patterns
-dialog](http://bio-hazard.cx/colorizeoutput/images/vscoloroutputpatterns.png)
+dialog](http://bio-hazard.us/colorizeoutput/images/vscoloroutputpatterns.png)
 
 At run-time, ColorizeOutput will walk this list in order, testing the
 line of text against the regular expression. If it matches, the line is

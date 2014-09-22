@@ -1,7 +1,7 @@
 ﻿// ****************************************************************************
-// * Project:  ColorizeOutput
+// * Project:  Colorize-Output
 // * File:     Program.cs
-// * Date:     06/18/2014
+// * Date:     07/26/2014
 // ****************************************************************************
 
 using System;
@@ -9,7 +9,7 @@ using System;
 namespace ColorizeOutput {
   internal class Program {
     [STAThread]
-    private static void Main(string[] args) {
+    private static void Main() {
       using (var frm = new AboutBox())
         frm.ShowDialog();
     }
