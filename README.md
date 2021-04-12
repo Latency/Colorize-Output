@@ -130,8 +130,7 @@ clicks.
 
 <a name="references"><h2>References</h2></a>
 
-ColorizeOutput is open source. It's hosted on Codeplex at
-<http://colorizeoutput.codeplex.com> or <http://latency.github.io/Colorize-Output>
+ColorizeOutput is open source.
 
 Contributions should be 100% free.  This means, removing banners and
 donate buttons that put money in the repository owners pockets.

@@ -1,30 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4906F798-1AA4-49F8-9E56-38C5B5B7200D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22} = {BFA8DB9A-F7D4-4405-A97C-2FC515611B22}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colorize-Output", "src\Windows\VSColorOutput\Colorize-Output.csproj", "{802C16C4-6FE5-4842-9AAF-84D4BD93A962}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInfo", "..\AssemblyInfo\AssemblyInfo\AssemblyInfo.csproj", "{958560DB-A618-486D-8CF3-A6456C4482B1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colorize-Output", "src\Windows\Colorize-Output.csproj", "{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80BAF24F-8152-48D7-B8DA-55AE625E0D2F}"
-	ProjectSection(SolutionItems) = preProject
-		IntegrationTests.testsettings = IntegrationTests.testsettings
-		UnitTests.testsettings = UnitTests.testsettings
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage2", "VSPackage2\VSPackage2.csproj", "{31230201-B537-461D-980B-22D3726808B9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage2_IntegrationTests", "VSPackage2\VSPackage2_IntegrationTests\VSPackage2_IntegrationTests.csproj", "{801252C4-1D46-4B41-B4AC-F30EA29B830E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage2_UnitTests", "VSPackage2\VSPackage2_UnitTests\VSPackage2_UnitTests.csproj", "{4AEFD1A6-7518-4C59-8D16-D72BB79A376A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{236E85A0-EFC9-4523-9CF4-DBB5104872A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colorize-Output.Tests", "src\Windows\VSColorOutput.Tests\Colorize-Output.Tests.csproj", "{4A1ECFBF-6D1C-49B6-9371-3222DE52006B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,32 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4906F798-1AA4-49F8-9E56-38C5B5B7200D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4906F798-1AA4-49F8-9E56-38C5B5B7200D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4906F798-1AA4-49F8-9E56-38C5B5B7200D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4906F798-1AA4-49F8-9E56-38C5B5B7200D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{958560DB-A618-486D-8CF3-A6456C4482B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{958560DB-A618-486D-8CF3-A6456C4482B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{958560DB-A618-486D-8CF3-A6456C4482B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{958560DB-A618-486D-8CF3-A6456C4482B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFA8DB9A-F7D4-4405-A97C-2FC515611B22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31230201-B537-461D-980B-22D3726808B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31230201-B537-461D-980B-22D3726808B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31230201-B537-461D-980B-22D3726808B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31230201-B537-461D-980B-22D3726808B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{801252C4-1D46-4B41-B4AC-F30EA29B830E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{801252C4-1D46-4B41-B4AC-F30EA29B830E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{801252C4-1D46-4B41-B4AC-F30EA29B830E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{801252C4-1D46-4B41-B4AC-F30EA29B830E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AEFD1A6-7518-4C59-8D16-D72BB79A376A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AEFD1A6-7518-4C59-8D16-D72BB79A376A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AEFD1A6-7518-4C59-8D16-D72BB79A376A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AEFD1A6-7518-4C59-8D16-D72BB79A376A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{802C16C4-6FE5-4842-9AAF-84D4BD93A962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{802C16C4-6FE5-4842-9AAF-84D4BD93A962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{802C16C4-6FE5-4842-9AAF-84D4BD93A962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{802C16C4-6FE5-4842-9AAF-84D4BD93A962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1ECFBF-6D1C-49B6-9371-3222DE52006B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1ECFBF-6D1C-49B6-9371-3222DE52006B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1ECFBF-6D1C-49B6-9371-3222DE52006B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1ECFBF-6D1C-49B6-9371-3222DE52006B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4785A0BF-D246-4589-A7F5-D7569AD9D998}
 	EndGlobalSection
 EndGlobal
