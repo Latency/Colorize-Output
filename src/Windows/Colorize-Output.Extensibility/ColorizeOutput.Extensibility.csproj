@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<NoWarn>$(NoWarn);VSEXTPREVIEW_TAGGERS</NoWarn>
+		<Description>A Visual Studio extension to colorize your build and debug output.</Description>
+		<Version>2.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MessagePack" Version="3.1.12" />
+		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.14.40608"
+		                  PrivateAssets="build;buildtransitive;analyzers" />
+		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.14.40608"
+		                  PrivateAssets="build;buildtransitive;analyzers" />
+	</ItemGroup>
+
+	<Target Name="CopyVsixOneDirectoryUp" AfterTargets="Build">
+		<ItemGroup>
+			<VsixOutput Include="$(OutDir)*.vsix" />
+		</ItemGroup>
+		<Move SourceFiles="@(VsixOutput)" DestinationFolder="$(MSBuildProjectDirectory)\..\..\..\"
+		      OverwriteReadOnlyFiles="true" />
+	</Target>
+
+	<Target Name="MoveReadmeToSolutionRoot" AfterTargets="Build;WriteReadmeToFile">
+		<Move SourceFiles="$(MSBuildProjectDirectory)\..\README.md" DestinationFolder="$(MSBuildProjectDirectory)\..\..\..\"
+		      OverwriteReadOnlyFiles="true" Condition="Exists('$(MSBuildProjectDirectory)\..\README.md')" />
+	</Target>
+
+  <UsingTask TaskName="LinkVsixInReadme" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <ReadmeFile ParameterType="System.String" Required="true" />
+      <VsixName ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+        if (File.Exists(ReadmeFile))
+        {
+            var text = File.ReadAllText(ReadmeFile);
+            var link = "[" + VsixName + "](" + VsixName + ")";
+            var updated = Regex.Replace(text, @"(?m)^(\| STATUS: \| ).*?[ \t]*\|[ \t]*(\r?)$", m => m.Groups[1].Value + "Not Installed |" + m.Groups[2].Value);
+            updated = Regex.Replace(updated, @"(?m)^This library can be installed from \[NuGet\]\.", "This extension can be installed with " + link + ".");
+            if (updated != text)
+            {
+                File.WriteAllText(ReadmeFile, updated, new System.Text.UTF8Encoding(false));
+            }
+        }
+      ]]></Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="LinkVsixInReadme" AfterTargets="MoveReadmeToSolutionRoot">
+    <LinkVsixInReadme ReadmeFile="$(MSBuildProjectDirectory)\..\..\..\README.md" VsixName="$(AssemblyName).vsix" />
+  </Target>
+
+</Project>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Windows/Colorize-Output.Extensibility/ColorizeOutput.Extensibility.csproj" />
+  <Project Path="src/Windows/Unit Tests/Unit Tests.csproj" />
+</Solution>

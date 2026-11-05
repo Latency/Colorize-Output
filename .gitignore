@@ -218,5 +218,5 @@ project.lock.json
 *-cache/
 *-SetupFiles/
 
-# GitHub
-.github/*
+# LFS
+.lfsconfig

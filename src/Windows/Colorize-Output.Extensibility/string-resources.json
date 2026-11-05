@@ -1,0 +1,8 @@
+{
+  "ColorizeOutput.Category.DisplayName": "VSColorOutput",
+  "ColorizeOutput.Category.Description": "Options for VSColorOutput.",
+  "ColorizeOutput.EnableStopOnBuildError.DisplayName": "Stop on build error",
+  "ColorizeOutput.ShowElapsedBuildTime.DisplayName": "Show elapsed build time",
+  "ColorizeOutput.ShowBuildReport.DisplayName": "Show build report",
+  "ColorizeOutput.SuppressDonation.DisplayName": "Suppress donation prompt"
+}
